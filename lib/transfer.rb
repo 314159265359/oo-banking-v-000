@@ -1,7 +1,5 @@
 class Transfer
-  attr_accessor :sender, :receiver, :status, :amount, :counter
-
-  @counter = 0
+  attr_accessor :sender, :receiver, :status, :amount
 
   def initialize(sender, receiver, status = "pending", amount)
     @sender = sender
@@ -15,15 +13,12 @@ class Transfer
   end
 
   def execute_transaction
-    while @counter == 0
       if self.valid?
       @sender.balance -= @amount
       @receiver.balance += @amount
       @status = "complete"
       @counter = 1
-    end
       else
-
       @status = "rejected"
       "Transaction rejected. Please check your account balance."
       end
