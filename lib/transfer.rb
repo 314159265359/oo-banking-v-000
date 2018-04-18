@@ -13,9 +13,13 @@ class Transfer
   end
 
   def execute_transaction
+    counter = 0
+    while counter != 1
     @sender.balance -= @amount
     @receiver.balance += @amount
     @status = "complete"
+    counter = 1
+  end
   end
 
 end
